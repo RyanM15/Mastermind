@@ -12,11 +12,8 @@ public class Mastermind{
 		
 		ArrayList<ArrayList<Character>> board = new ArrayList<ArrayList<Character>>();
 		
-		public void printBoard(){ //prints out the board 
-		
-		
-		
-		
+		public void firstBoard(){
+			
 		for(int i = 0; i<20; i++)
 		{
 			board.add(new ArrayList<Character>());
@@ -60,6 +57,14 @@ public class Mastermind{
 				
 			}
 		}
+	}
+		
+		public void printBoard(){ //prints out the board 
+		
+		
+		
+		
+		
 		//System.out.println("NOTE: The position of the score pins does not correlate in any way to the position of the board pins");
 		System.out.print("BOARD");
 		System.out.println("		SCORE");
@@ -95,7 +100,12 @@ public class Mastermind{
 	}
 	*/
 	
-	public void board(){ //populating random computer generated secret code
+	//public void board(){ //populating random computer generated secret code
+		
+	//}
+	
+	public void playerGuess(){
+		
 		ArrayList<Character> pins = new ArrayList<Character>();
 		ArrayList<Character> selected = new ArrayList<Character>();
 		pins.add('R');
@@ -122,23 +132,112 @@ public class Mastermind{
 			
 		
 		
-	}
-	
-	public void playerGuess(){
-		//ArrayList<Character> guess = new ArrayList<Character>();
-		System.out.println("Type your guess of four letters: R,O,W,Y,G,P,B in all caps");
-		Scanner scan = new Scanner (System.in);
-		String guess = scan.nextLine();
 		
-		//for(int i = 0; i < 20; i++)
-		//{
-			board.get(0).set(0, guess.charAt(0));
-			board.get(0).set(1, guess.charAt(1));
-			board.get(0).set(2, guess.charAt(2));
-			board.get(0).set(3, guess.charAt(3));
+		
+		
+		//ArrayList<Character> guess = new ArrayList<Character>();
+		for(int i = 0; i < 10; i++)
+		{
 			
-			//i = i + 2;
-		//}
+			System.out.println("Type your guess of four letters: R,O,W,Y,G,P,B in all caps");
+			Scanner scan = new Scanner (System.in);
+			String guess = scan.nextLine();
+		
+		
+			board.get(i).set(0, guess.charAt(0));
+			board.get(i).set(1, guess.charAt(1));
+			board.get(i).set(2, guess.charAt(2));
+			board.get(i).set(3, guess.charAt(3));
+			
+			
+			//loop through compare guess and secret
+			//  R G B O   GUESS
+			//  G O Y B   SECRET
+			int whitePin = 0;
+			int blackPin = 0;
+			board.get((i*2)/2).set(5, 'B');
+			board.get((i*2)/2).set(6, 'W');
+			for(int j = 0; j < 4; j++)
+			{
+				
+				for (int k=0;k<4;k++)
+				{
+					if (guess.charAt(j) == selected.get(k) ) 
+					{
+						
+						if (j==k)
+						{
+							blackPin++;
+							board.get(i+1).set(5, (char)(blackPin+48));
+						}
+						else 
+						{
+							whitePin++;
+							board.get(i+1).set(6, (char)(whitePin+48));
+						}
+					}
+				}
+						
+						
+						
+				/*		
+				if(guess.charAt(j) == selected.get(0))
+				{
+					if (j==0)
+					{
+						board.get(j).set(5, 'B');
+					}	
+					else
+					{
+						board.get(j).set(5, 'W');
+					}
+				}
+				else if(guess.charAt(j) == selected.get(1))
+				{
+					if (j==1)
+					{
+						board.get(j).set(6, 'B');
+					}	
+					else
+					{
+						board.get(j).set(6, 'W');
+					}
+					
+				}
+				else if(guess.charAt(j) == selected.get(2))
+				{
+					if(j==2)
+					{
+						board.get(j+1).set(5, 'B');
+					}
+					else 
+					{
+						board.get(j+1).set(5, 'W');
+					}
+				}
+				
+				else if(guess.charAt(j) == selected.get(3))
+				{
+					if(j==3)
+					{
+						board.get(j+1).set(6, 'B');
+					}
+					else 
+					{
+						board.get(j+1).set(6, 'W');
+					}
+				}
+				j++;
+				*/
+			}
+			
+			
+			
+			
+			printBoard();
+			i++;
+			
+		}
 			
 		
 		
