@@ -105,7 +105,7 @@ public class Mastermind{
 	//}
 	
 	public void playerGuess(){
-		
+		int counter = 0;
 		ArrayList<Character> pins = new ArrayList<Character>();
 		ArrayList<Character> selected = new ArrayList<Character>();
 		pins.add('R');
@@ -127,7 +127,7 @@ public class Mastermind{
 			pins.remove(randomm); //removes the random from the pins list so no repeats
 			//System.out.println(j);
 		}
-		System.out.print(selected);
+		//System.out.print(selected);
 		
 			
 		
@@ -136,47 +136,64 @@ public class Mastermind{
 		
 		
 		//ArrayList<Character> guess = new ArrayList<Character>();
-		for(int i = 0; i < 10; i++)
+		//while (counter == 0)
+		//{
+		while(counter == 0)
+		{
+		for(int i = 0; i < 20; i++)
 		{
 			
-			System.out.println("Type your guess of four letters: R,O,W,Y,G,P,B in all caps");
-			Scanner scan = new Scanner (System.in);
-			String guess = scan.nextLine();
+				System.out.println("Type your guess of four letters: R,O,W,Y,G,P,B in all caps");
+				Scanner scan = new Scanner (System.in);
+				String guess = scan.nextLine();
 		
 		
-			board.get(i).set(0, guess.charAt(0));
-			board.get(i).set(1, guess.charAt(1));
-			board.get(i).set(2, guess.charAt(2));
-			board.get(i).set(3, guess.charAt(3));
+				board.get(i).set(0, guess.charAt(0));
+				board.get(i).set(1, guess.charAt(1));
+				board.get(i).set(2, guess.charAt(2));
+				board.get(i).set(3, guess.charAt(3));
 			
 			
-			//loop through compare guess and secret
-			//  R G B O   GUESS
-			//  G O Y B   SECRET
-			int whitePin = 0;
-			int blackPin = 0;
-			board.get((i*2)/2).set(5, 'B');
-			board.get((i*2)/2).set(6, 'W');
-			for(int j = 0; j < 4; j++)
-			{
-				
-				for (int k=0;k<4;k++)
+				//loop through compare guess and secret
+				//  R G B O   GUESS
+				//  G O Y B   SECRET
+				int whitePin = 0;
+				int blackPin = 0;
+				board.get((i*2)/2).set(5, 'B');
+				board.get((i*2)/2).set(6, 'W');
+				//while(blackPin!=4)
+				//while(counter != 1)
+			//{
+				for(int j = 0; j < 4; j++)
 				{
-					if (guess.charAt(j) == selected.get(k) ) 
+				
+					for (int k=0;k<4;k++)
 					{
+						if (guess.charAt(j) == selected.get(k) ) 
+						{
 						
-						if (j==k)
-						{
-							blackPin++;
-							board.get(i+1).set(5, (char)(blackPin+48));
+							if (j==k)
+							{
+								blackPin++;
+								board.get(i+1).set(5, (char)(blackPin+48));
+							}
+							else if(blackPin == 4)
+							{
+								counter = 1;
+							}
+							
+							
+							else 
+							{
+								whitePin++;
+								board.get(i+1).set(6, (char)(whitePin+48));
+							}
 						}
-						else 
-						{
-							whitePin++;
-							board.get(i+1).set(6, (char)(whitePin+48));
-						}
+						
 					}
+					
 				}
+			//System.out.println("Congrats you won!!!");
 						
 						
 						
@@ -229,7 +246,8 @@ public class Mastermind{
 				}
 				j++;
 				*/
-			}
+			//}
+		
 			
 			
 			
@@ -238,6 +256,13 @@ public class Mastermind{
 			i++;
 			
 		}
+		System.out.println("Sorry you lost.");
+	}
+	
+		System.out.println("Congrats you won!!1");
+	
+			
+	
 			
 		
 		
@@ -248,16 +273,16 @@ public class Mastermind{
 	}
 		
 		
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
+	
+	
+	
+	
+	
+	
+	
+	
+
 
 
 
