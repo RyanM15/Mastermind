@@ -105,7 +105,7 @@ public class Mastermind{
 	//}
 	
 	public void playerGuess(){
-		int counter = 0;
+		boolean gameOver = false;
 		ArrayList<Character> pins = new ArrayList<Character>();
 		ArrayList<Character> selected = new ArrayList<Character>();
 		pins.add('R');
@@ -127,7 +127,7 @@ public class Mastermind{
 			pins.remove(randomm); //removes the random from the pins list so no repeats
 			//System.out.println(j);
 		}
-		//System.out.print(selected);
+		System.out.print(selected);
 		
 			
 		
@@ -138,11 +138,12 @@ public class Mastermind{
 		//ArrayList<Character> guess = new ArrayList<Character>();
 		//while (counter == 0)
 		//{
-		while(counter == 0)
-		{
+		int whitePin = 0;
+		int blackPin = 0;
 		for(int i = 0; i < 20; i++)
 		{
-			
+			//while(gameOver == false)
+		//{
 				System.out.println("Type your guess of four letters: R,O,W,Y,G,P,B in all caps");
 				Scanner scan = new Scanner (System.in);
 				String guess = scan.nextLine();
@@ -157,8 +158,8 @@ public class Mastermind{
 				//loop through compare guess and secret
 				//  R G B O   GUESS
 				//  G O Y B   SECRET
-				int whitePin = 0;
-				int blackPin = 0;
+				whitePin = 0;
+				blackPin = 0;
 				board.get((i*2)/2).set(5, 'B');
 				board.get((i*2)/2).set(6, 'W');
 				//while(blackPin!=4)
@@ -176,11 +177,14 @@ public class Mastermind{
 							{
 								blackPin++;
 								board.get(i+1).set(5, (char)(blackPin+48));
+								
+								if (blackPin >= 4)
+								{
+									i = 25;
+									//gameOver = true;
+								}
 							}
-							else if(blackPin == 4)
-							{
-								counter = 1;
-							}
+							
 							
 							
 							else 
@@ -255,12 +259,24 @@ public class Mastermind{
 			printBoard();
 			i++;
 			
-		}
+		//}  //CLOSES WHILE
+		
+		
+	} //CLOSES FOR
+	
+		
+	if(blackPin >= 4)
+	{
+		System.out.println("Congrats you won!!!");
+		
+	}
+	else
+	{
 		System.out.println("Sorry you lost.");
 	}
 	
-		System.out.println("Congrats you won!!1");
-	
+			
+		
 			
 	
 			
